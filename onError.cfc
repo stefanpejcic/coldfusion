@@ -12,7 +12,7 @@
     if (e.debugError()) {
       // show developer info here
     }
-
+    
     /** Throw the exception **/
     e.throwException();
   } 

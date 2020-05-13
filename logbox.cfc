@@ -3,9 +3,9 @@ component {
   // ...
   function onError( exception ){
    // uLogging error with logbox...
-    writeOutput( "Upisivanje greske u log fajlu.." );
+    writeOutput( "Saving error in log file.." );
     logger.error(
-        "Doslo je do greske u aplikaciji: #exception.message# #exception.detail#"
+        "An error occured: #exception.message# #exception.detail#"
         exception
     );
 

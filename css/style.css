@@ -2925,7 +2925,6 @@ div.dugme {
 a.dugmence{
 	color: white;
 	padding-bottom: 8px;
-    bottom: 0px;
-    right: 15px;
+	bottom: 0px;
 	position: inherit;
 	}

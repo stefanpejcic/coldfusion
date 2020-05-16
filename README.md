@@ -415,3 +415,29 @@ completed query MyDBQuery; Query Execution time:
 </cfif>
 ```
 
+
+## Comments
+ColdFusion comments have a similar format to HTML comments but use three dash characters instead of two.
+
+##### Single line comment
+```
+<!--- This is a ColdFusion Comment. Browsers do not receive it. --->
+```
+
+<hr>
+
+##### Inline comment
+
+```
+mojo = 1; //THIS IS A COMMENT
+```
+<hr>
+
+##### Multiline comment
+
+```
+/* This is a comment
+	that can span
+	multiple lines
+*/
+```

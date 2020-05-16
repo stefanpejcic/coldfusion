@@ -211,3 +211,40 @@ This are like dictionaries in Python or hashes in Ruby.
     <cfoutput>#aGuy[data]#: #data#</cfoutput>
 </cfloop>
 ```
+
+## Queries
+Use SQL in coldfusion to retrieve data form a database or enter data in it.
+
+##### Simple Query
+```
+var queryOptions = { datasource: "appMain" };
+var data = queryExecute(
+  "SELECT * FROM users", {}, queryOptions
+);
+```
+
+<hr>
+
+##### Allocate query result into variable & retrieve info
+
+```
+<cfquery name="firstQ" datasource="tsdata.ts24">
+    SELECT * FROM TestTable
+</cfquery>
+```
+
+<hr>
+
+##### Looping over the Query
+
+```
+<cfoutput>
+    <cfloop query="#firstQ#">
+        <p><i>myDataAlfa: </i>#firstQ.myDataAlfa# <i>myDataInt: </i>#firstQ.myDataInt#</p>
+    </cfloop>
+    
+    <!--- Extra data to get from the query --->
+    <p>#firstQ.columnlist#</p>
+    <p>#firstQ.recordcount#</p>
+</cfoutput>
+```

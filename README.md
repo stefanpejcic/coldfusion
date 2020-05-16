@@ -248,3 +248,124 @@ var data = queryExecute(
     <p>#firstQ.recordcount#</p>
 </cfoutput>
 ```
+
+##### Allocate query result into variable & retrieve info
+
+```
+<cfquery name="firstQ" datasource="tsdata.ts24">
+    SELECT * FROM TestTable
+</cfquery>
+```
+
+<hr>
+
+##### Looping over the Query
+
+```
+<cfoutput>
+    <cfloop query="#firstQ#">
+        <p><i>myDataAlfa: </i>#firstQ.myDataAlfa# <i>myDataInt: </i>#firstQ.myDataInt#</p>
+    </cfloop>
+    
+    <!--- Extra data to get from the query --->
+    <p>#firstQ.columnlist#</p>
+    <p>#firstQ.recordcount#</p>
+</cfoutput>
+```
+
+## Logging
+Use <b>cflog</b> to write a message to a log file.
+
+##### Simple Log
+```
+<cflog file="myAppLog" application="no"
+text="User #Form.username# logged on.">
+```
+
+<hr>
+
+##### Clear Log File
+
+```
+var logDir = expandPath( "/logs/" );
+var logs = directoryList(
+  path = logDir,
+  listInfo = "name",
+  filter = "*.log",
+  type = "file",
+  recurse = "false"
+);
+for( var log in logs ){
+  var fullPath = logDir & log ;
+  if( fileExists( fullPath ) ){
+    fileDelete( fullPath );
+  }
+}
+```
+
+<hr>
+
+##### Log Error in Log File
+
+```
+component {
+  // ...
+  function onError( exception ){
+   // uLogging error with logbox...
+    writeOutput( "Writting to error log.." );
+    logger.error(
+        "Error occured in application: #exception.message# #exception.detail#"
+        exception
+    );
+
+    // error page
+    include "views/error.cfm";
+  }
+}
+```
+
+## Security
+Security-related settings for Application.cfc file
+
+##### App Lock-down
+```
+// Application.cfc
+
+component {
+  this.name = "myApp";
+  this.blockedExtForFileUpload = "*";
+  this.scriptProtect					 = "all";
+  this.sessioncookie = {
+    httpOnly: true,
+    secure  : true
+  };
+}
+```
+
+<hr>
+
+##### OnError Action
+
+```
+  public function onError(required exception, required string eventName)
+  {
+    var factory = new App.ExceptionFactory();
+    var e = factory.getNewException(arguments.eventName, arguments.exception);
+    if (e.logError()) {
+    
+      /** we cauld also have a logging cfc etc **/
+      var loggingFile = new App.SomeLoggingCfc(arguments.eventName, arguments.exception);
+      loggingFile.commitLog();
+    }
+    if (e.debugError()) {}
+    e.throwException();
+  } 
+  public ExceptionFactory function getNewException(required string eventName, required exception)
+  {
+    return new "App.#exception.type#"(argumentCollection = arguments);
+  } 
+  public boolean function logError() {}
+  public boolean function debugError() {}
+  public function throwException() {}
+```
+

@@ -342,9 +342,26 @@ component {
 }
 ```
 
+
+## Error Handling
+ColdFusion provides a variety of tools to customize error information and handle errors when they occur.
+
+##### Try / Catch / Throw / Finally / Rethrow
+```
+try {
+	throw(message="Oops", detail="xyz");
+} catch (any e) {
+	WriteOutput("Error: " & e.message);
+	rethrow;
+	
+} finally {
+	WriteOutput("I run even if no error");
+}
+```
+
 <hr>
 
-##### OnError Action
+##### OnError Exception
 
 ```
   public function onError(required exception, required string eventName)
@@ -367,5 +384,34 @@ component {
   public boolean function logError() {}
   public boolean function debugError() {}
   public function throwException() {}
+```
+
+## Debugging
+You can use CFML tags and functions to display or hide debugging and tracing information.
+
+##### Control Debugging Output
+```
+<cfsetting showDebugOutput="No">
+```
+
+<hr>
+
+##### Show Query execution time
+
+```
+<cfquery name="TestQuery" datasource="cfexample" debug>
+SELECT * FROM TestTable
+</cfquery>
+```
+<hr>
+
+##### Log Values to MyAppSilentTrace.log
+
+```
+<cfif IsDebugMode()>
+<cflog file="MyAppSilentTrace" text="Page: #cgi.script_name#,
+completed query MyDBQuery; Query Execution time:
+#cfquery.ExecutionTime# Status: #Application.status#">
+</cfif>
 ```
 

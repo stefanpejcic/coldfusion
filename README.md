@@ -154,3 +154,60 @@ for (car in cars) {
 ```
 //OUTPUTS Model TModel 30
 ```
+## Structures
+This are like dictionaries in Python or hashes in Ruby.
+
+##### Create structure literal
+```
+<cfset aGuy = {} />
+<cfset batman = {
+    "first_name" = "Bruno",
+    "last_name" = "Diaz",
+    "age" = 42
+} />
+```
+
+<hr>
+
+##### Constructor
+
+```
+<cfset aGuy = structNew() />
+```
+
+<hr>
+
+##### Adding elements with brackets
+
+```
+<cfset aGuy["first_name"] = "Ezequiel" />
+<cfset aGuy["last_name"] = "Lopez" />
+```
+
+<hr>
+
+##### Concatenate variable and string
+
+```
+<cfset todayDate = "Today is: #now()#" />
+<cfset greeting = "Hello " & name />
+```
+
+<hr>
+
+##### Adding elements with dot notation
+
+```
+<cfset aGuy.age = 29 />
+<cfset aGuy.height = "5' 11\"" />
+```
+
+<hr>
+
+##### Looping over the structure
+
+```
+<cfloop collection = "aGuy" item = "data">
+    <cfoutput>#aGuy[data]#: #data#</cfoutput>
+</cfloop>
+```

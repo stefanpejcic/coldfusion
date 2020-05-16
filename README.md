@@ -67,3 +67,90 @@ Use <b>cfset</b> to create a variable (if it doesn't exist) and assign it a valu
 <cfdump var = "#name#" /> _same as inspect in ruby_
 <cfoutput>#name#</cfoutput> _same as puts in ruby_
 ```
+
+## Loops
+There are several different types of for and while loops in ColdFusion.
+For more info please see the docs for <a href="https://cfdocs.org/cfscript">cfloop</a>.
+
+##### FOR loop
+```
+for (i=1;i LTE ArrayLen(array);i=i+1) {
+	WriteOutput(array[i]);
+}
+```
+
+<hr>
+
+##### While loop
+
+```
+x = 0;
+while (x LT 5) {
+	x = x + 1;
+	WriteOutput(x);
+}
+```
+```
+//OUTPUTS 12345
+```
+
+<hr>
+
+##### Do While loop
+
+```
+x = 0;
+do {
+ x = x+1;
+ WriteOutput(x);
+} while (x LTE 0);
+```
+```
+// OUTPUTS 1
+```
+
+<hr>
+
+##### FOR IN loop (Structure)
+
+```
+struct = StructNew();
+struct.one = "1";
+struct.two = "2";
+for (key in struct) {
+	WriteOutput(key);
+}
+```
+```
+//OUTPUTS onetwo
+```
+
+<hr>
+
+##### FOR IN loop (Array)
+
+```
+cars = ["Ford","Dodge"];
+for (car in cars) {
+	WriteOutput(car);
+}
+```
+```
+//OUTPUTS FordDodge
+```
+
+<hr>
+
+##### FOR IN loop (Query)
+
+```
+cars = QueryNew("make,model",
+	"cf_sql_varchar,cf_sql_varchar",
+	[["Ford", "T"],["Dodge","30"]]);
+for (car in cars) {
+	WriteOutput("Model " & car.model);
+}
+```
+```
+//OUTPUTS Model TModel 30
+```

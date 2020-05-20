@@ -579,7 +579,21 @@ component {
                             </div>
                         </div>
                     </div>
-
+ <div class="col-md-6 col-lg-4">
+                        <div class="css-cheats">
+                            <div class="row justify-content-between align-items-center">
+                                <p class="col-xs-12 col-sm-12">Output CF Error details without CFDump</p>
+<pre>
+&#x3c;cftry>
+   ...
+&#x3c;cfcatch>
+   &#x3c;cf_OutputCFCatch CFCatch="#CFCatch#" />
+&#x3c;/cfcatch>
+&#x3c;/cftry>
+</pre>
+                            </div>
+                        </div>
+                    </div>
                     
                 </div>
             </section>
@@ -714,6 +728,61 @@ completed query MyDBQuery; Query Execution time:
                                 <pre style="">http://www.example.com:8500/CFIDE/componentutils/componentdetail.cfm</pre>
                                 <h6  class="col-xs-12 col-sm-12">2. append the following to the url</h6>
                                 <pre style="">?session.isAdmin=1</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+			<section class="container section" id="tricks">
+                <h3 class="section__title">Tricks</h3>
+                <p class="section__title" style="margin-bottom: 10px; margin-top: -15px;">Tips & Tricks on becoming ColdFusion Pro!</p>
+
+<div class="row">
+                    
+					<div class="col-md-6 col-lg-6">
+                        <div class="css-cheats">
+                            <div class="row justify-content-between align-items-center">
+                                <p class="col-xs-12 col-sm-12">Find the Java Version Used by ColdFusion or Railo</p>
+                                <pre>&#x3c;cfoutput>#CreateObject("java", "java.lang.System").getProperty("java.version")#&#x3c;/cfoutput></pre>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-6 col-lg-4">
+                        <div class="css-cheats">
+                            <div class="row justify-content-between align-items-center">
+                                <p class="col-xs-12 col-sm-12">Per-Application ColdFusion Mappings</p>
+                                <pre>&#x3c;cfset this.mappings["/test"]="c:\inetpub\wwwroot\test"></pre>
+								</code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="css-cheats">
+                            <div class="row justify-content-between align-items-center">
+                                <p class="col-xs-12 col-sm-12">Restart a ColdFusion Application</p>
+                                <pre>&#x3c;cfset ApplicationStop() />
+&#x3c;cflocation url="index.cfm" addtoken="false" /></pre>
+								</code>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <div class="css-cheats">
+                            <div class="row justify-content-between align-items-center">
+                                <p class="col-xs-12 col-sm-12">Lower Session Timeouts for Bots and Spiders</p>
+                                <pre>#in Application.cfm
+&#x3c;cfif StructKeyExists(cookie, "cfid") or StructKeyExists(cookie, "jsessionid")>
+&#x3c;cfset REQUEST.sessionTimeout = CreateTimeSpan(0,0,30,0) />
+&#x3c;cfelse>
+ &#x3c;cfset REQUEST.sessionTimeout = CreateTimeSpan(0,0,0,2) />
+&#x3c;/cfif>
+
+#REQUEST.sessionTimeout variable in cfapplication tag
+
+&#x3c;cfapplication name="myawesomeapp"
+     sessionmanagement="Yes"
+     sessiontimeout="#REQUEST.sessionTimeout#"></pre>
+								</code>
                             </div>
                         </div>
                     </div>

@@ -747,7 +747,7 @@ completed query MyDBQuery; Query Execution time:
                             </div>
                         </div>
                     </div>
-					<div class="col-md-6 col-lg-4">
+					<div class="col-md-6 col-lg-6">
                         <div class="css-cheats">
                             <div class="row justify-content-between align-items-center">
                                 <p class="col-xs-12 col-sm-12">Per-Application ColdFusion Mappings</p>
@@ -756,7 +756,7 @@ completed query MyDBQuery; Query Execution time:
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4">
+                    <div class="col-md-6 col-lg-6">
                         <div class="css-cheats">
                             <div class="row justify-content-between align-items-center">
                                 <p class="col-xs-12 col-sm-12">Restart a ColdFusion Application</p>
@@ -783,6 +783,39 @@ completed query MyDBQuery; Query Execution time:
      sessionmanagement="Yes"
      sessiontimeout="#REQUEST.sessionTimeout#"></pre>
 								</code>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+			<section class="container section" id="troubleshooting">
+                <h3 class="section__title">Troubleshooting</h3>
+                <p class="section__title" style="margin-bottom: 10px; margin-top: -15px;">Below are some of the most common issues that I've faced with while working with older CF versions.</p>
+
+<div class="row">
+                    
+					<div class="col-md-6 col-lg-6">
+                        <div class="css-cheats">
+                            <div class="row justify-content-between align-items-center">
+                                <p class="col-xs-12 col-sm-12">Wrong time zone in ColdFusion</p></br>
+								<p class="col-xs-12 col-sm-12"><b>PROBLEM</b>: ColdFusion now() function is reporting different time than that of a server.</p>
+								<p class="col-xs-12 col-sm-12"><b>CAUSE:</b> ColdFusion relies on Java and uses the time zone within the Java Virtual Machine (JVM) that ColdFusion runs on.</br>&nbsp;</p>
+								<p class="col-xs-12 col-sm-12"><b>SOLUTION:</b> Add the following JVM Argument</p>
+                                <pre style="width:40%">-Duser.timezone=Europe/Belgrade</pre>
+								<small class="col-xs-12 col-sm-12">*Where Europe/Belgrade is your <a href="https://www.zeitverschiebung.net/en/timezone/europe--belgrade">timezone ID</a></small>
+                            </div>
+                        </div>
+                    </div>
+					<div class="col-md-6 col-lg-6">
+                        <div class="css-cheats">
+                            <div class="row justify-content-between align-items-center">
+                                <p class="col-xs-12 col-sm-12">ColdFusion Application keeps dying</p></br>
+								<p class="col-xs-12 col-sm-12"><b>PROBLEM</b>: ColdFusion application breaks with the following error: Out‐of‐ Memory error (OOME)</p>
+								<p class="col-xs-12 col-sm-12"><b>CAUSE:</b>-XX:PermSize & -XX:MaxPermSize are used to set size for Permanent Generation (where compiled classes and JSP pages are kept).
+								If this space is full, it triggers a Full Garbage Collection and if that fails to expand the Permanent Space the JVM will crash.</p>
+								<p class="col-xs-12 col-sm-12"><b>SOLUTION:</b> Add the following JVM Argument</p>
+                                <pre style="width:40%">-XX:MaxPermSize=512m</pre>
+								<small class="col-xs-12 col-sm-12">*Where 512m stands for 512MB</a></small>
                             </div>
                         </div>
                     </div>

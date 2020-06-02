@@ -101,6 +101,7 @@
                     <li><a href="#comments">Comments</a></li>
 					<li><a href="#vulnerability">Vulnerabilities</a></li>
 					<li><a href="#tricks">Tips & Tricks</a></li>
+					<li><a href="#troubleshooting">Troubleshooting</a></li>
                 </ul>
             </nav>
 
@@ -407,7 +408,7 @@ for (car in cars) {
             </section>
             <section class="container section" id="queries">
                 <h3 class="section__title">Queries</h3>
-                <p class="section__title" style="margin-bottom: 10px; margin-top: -15px;">Use SQL in coldfusion to retrieve data form a database or enter data in it</p>
+                <p class="section__title" style="margin-bottom: 10px; margin-top: -15px;">Use SQL in coldfusion to retrieve data from a database or enter data in it</p>
 
                 <div class="row">
                     <div class="col-md-6 col-lg-4">
@@ -486,9 +487,9 @@ component {
   // ...
   function onError( exception ){
    // uLogging error with logbox...
-    writeOutput( "Upisivanje greske u log fajlu.." );
+    writeOutput( "Writing the error in log file.." );
     logger.error(
-        "Doslo je do greske u aplikaciji: #exception.message# #exception.detail#"
+        "An error occured: #exception.message# #exception.detail#"
         exception
     );
 
